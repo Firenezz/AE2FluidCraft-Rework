@@ -165,8 +165,7 @@ public class CPacketPickBlock implements IMessage {
                                 .extractItems(ias, Actionable.MODULATE, new PlayerSource(player, null));
                         if (extractedItem != null && extractedItem.getStackSize() > 0) {
                             player.inventory.setInventorySlotContents(slotToInsert, extractedItem.getItemStack());
-                            if (!middleMouseUsed)
-                                player.inventory.changeCurrentItem(slotToInsert);
+                            if (!middleMouseUsed) player.inventory.changeCurrentItem(slotToInsert);
 
                             if (!player.inventory.addItemStackToInventory(ItemStack.copyItemStack(is))) {
                                 IAEItemStack old_ias = AEApi.instance().storage().createItemStack(is);
