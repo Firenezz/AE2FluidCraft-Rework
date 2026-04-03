@@ -214,6 +214,7 @@ ae2fc.key.OpenInterfaceTerminal=Open Wireless Universal Interface Terminal
 ae2fc.key.OpenPatternTerminal=Open Wireless Universal Pattern Terminal
 ae2fc.key.OpenPatternExTerminal=Open Wireless Universal Processing Pattern Terminal
 ae2fc.key.Restock=Toggle Restock
+ae2fc.key.PickBlock=Pick Block
 
 itemGroup.ae2fc=Fluid Craft For AE2
 

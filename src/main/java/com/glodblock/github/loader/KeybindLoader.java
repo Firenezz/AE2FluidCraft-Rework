@@ -1,6 +1,5 @@
 package com.glodblock.github.loader;
 
-import com.glodblock.github.network.CPacketPickBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.settings.KeyBinding;
@@ -11,6 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.glodblock.github.FluidCraft;
 import com.glodblock.github.common.item.ItemWirelessUltraTerminal;
+import com.glodblock.github.network.CPacketPickBlock;
 import com.glodblock.github.network.CPacketSwitchGuis;
 import com.glodblock.github.network.CPacketValueConfig;
 import com.glodblock.github.util.UltraTerminalModes;
@@ -129,12 +129,11 @@ public class KeybindLoader implements Runnable {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.currentScreen != null) return;
         EntityClientPlayerMP player = mc.thePlayer;
-        if (player.capabilities.isCreativeMode)
-            return;
+        if (player.capabilities.isCreativeMode) return;
         ImmutablePair<Integer, ItemStack> term = Util.getUltraWirelessTerm(player);
         if (term == null) return;
 
-        CPacketPickBlock packet = CPacketPickBlock.createFromClientPick(player);
+        CPacketPickBlock packet = CPacketPickBlock.createFromClientPick(player, pickBlock.getKeyCode() == -98);
         if (packet != null) {
             FluidCraft.proxy.netHandler.sendToServer(packet);
         }
