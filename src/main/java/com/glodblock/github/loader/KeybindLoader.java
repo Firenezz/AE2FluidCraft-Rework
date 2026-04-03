@@ -1,5 +1,6 @@
 package com.glodblock.github.loader;
 
+import com.glodblock.github.network.CPacketPickBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.settings.KeyBinding;
@@ -32,6 +33,7 @@ public class KeybindLoader implements Runnable {
     public static KeyBinding openPatternTerminal;
     public static KeyBinding openPatternExTerminal;
     public static KeyBinding restock;
+    public static KeyBinding pickBlock;
 
     @Override
     public void run() {
@@ -57,6 +59,7 @@ public class KeybindLoader implements Runnable {
                 Keyboard.CHAR_NONE,
                 "itemGroup.ae2fc");
         restock = new KeyBinding(FluidCraft.MODID + ".key.Restock", Keyboard.CHAR_NONE, "itemGroup.ae2fc");
+        pickBlock = new KeyBinding(FluidCraft.MODID + ".key.PickBlock", Keyboard.CHAR_NONE, "itemGroup.ae2fc");
         ClientRegistry.registerKeyBinding(openTerminal);
         ClientRegistry.registerKeyBinding(openCraftingTerminal);
         ClientRegistry.registerKeyBinding(openLevelTerminal);
@@ -64,6 +67,7 @@ public class KeybindLoader implements Runnable {
         ClientRegistry.registerKeyBinding(openPatternTerminal);
         ClientRegistry.registerKeyBinding(openPatternExTerminal);
         ClientRegistry.registerKeyBinding(restock);
+        ClientRegistry.registerKeyBinding(pickBlock);
         FMLCommonHandler.instance().bus().register(this);
     }
 
@@ -94,6 +98,8 @@ public class KeybindLoader implements Runnable {
             handleOpenTerminalKey(UltraTerminalModes.PATTERN_EX);
         } else if (restock.isPressed()) {
             handleRestockKey();
+        } else if (pickBlock.isPressed()) {
+            handlePickBlock();
         }
     }
 
