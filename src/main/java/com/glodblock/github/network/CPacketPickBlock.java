@@ -155,6 +155,7 @@ public class CPacketPickBlock implements IMessage {
                                 .extractItems(ias, Actionable.MODULATE, new PlayerSource(player, null));
                         if (extractedItem != null) {
                             player.inventory.addItemStackToInventory(extractedItem.getItemStack());
+                            if (!middleMouseUsed) player.inventory.changeCurrentItem(slotToInsert);
                         }
                     } else {
                         // Try to move away the item
@@ -186,6 +187,7 @@ public class CPacketPickBlock implements IMessage {
                             .extractItems(ias, Actionable.MODULATE, new PlayerSource(player, null));
                     if (extractedItem != null) {
                         player.inventory.setInventorySlotContents(slotToInsert, extractedItem.getItemStack());
+                        if (!middleMouseUsed) player.inventory.changeCurrentItem(slotToInsert);
                     }
                 }
             }
