@@ -118,4 +118,19 @@ public class KeybindLoader implements Runnable {
             FluidCraft.proxy.netHandler.sendToServer(new CPacketValueConfig(0, 1));
         }
     }
+
+    private void handlePickBlock() {
+        Minecraft mc = Minecraft.getMinecraft();
+        if (mc.currentScreen != null) return;
+        EntityClientPlayerMP player = mc.thePlayer;
+        if (player.capabilities.isCreativeMode)
+            return;
+        ImmutablePair<Integer, ItemStack> term = Util.getUltraWirelessTerm(player);
+        if (term == null) return;
+
+        CPacketPickBlock packet = CPacketPickBlock.createFromClientPick(player);
+        if (packet != null) {
+            FluidCraft.proxy.netHandler.sendToServer(packet);
+        }
+    }
 }

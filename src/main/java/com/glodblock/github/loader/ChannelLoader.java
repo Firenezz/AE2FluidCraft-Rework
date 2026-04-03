@@ -67,5 +67,11 @@ public class ChannelLoader implements Runnable {
                 CPacketCustomButtonUpdate.class,
                 id++,
                 Side.SERVER);
+        netHandler.registerMessage(
+            new CPacketPickBlock.Handler(),
+            CPacketPickBlock.class,
+            id++,
+            Side.SERVER
+        );
     }
 }
